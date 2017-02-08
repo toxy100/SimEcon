@@ -67,7 +67,7 @@ to startup
     set color green
   ]
 
-  set is-first-registration? true
+;  set is-first-registration? true
 
   ;; set up colors and shape options for sellers
   initialize-shapes
@@ -116,20 +116,20 @@ to setup
   listen-to-clients
 
   ;; Make sure there are sellers before running the market
-  ifelse count sellers = 0 [
-   user-message "Can't run duopoly with no sellers. Please ask 2 producers to join."
-   stop
-  ][
-  ifelse count sellers > 2 [
-    user-message "Can't run duopoly with more than 2 producers. Please kick someone out."
-    stop
-    ][
-  if count sellers = 1 [
-        user-message "Can't run duopoly with 1 seller. You need one more producer."
-    stop
-    ]
-    ]
-  ]
+;  ifelse count sellers = 0 [
+;   user-message "Can't run duopoly with no sellers. Please ask 2 producers to join."
+;   stop
+;  ][
+;  ifelse count sellers > 2 [
+;    user-message "Can't run duopoly with more than 2 producers. Please kick someone out."
+;    stop
+;    ][
+;  if count sellers = 1 [
+;        user-message "Can't run duopoly with 1 seller. You need one more producer."
+;    stop
+;    ]
+;    ]
+;  ]
 
   ;; clear out current buyers
   ask buyers [die]
@@ -460,12 +460,12 @@ to execute-command [command]
     ifelse command = "Strategy"
     [ ask sellers with [user-id = hubnet-message-source]
         [
-          custom-logging:log-message (word "user " hubnet-message-source " strategy " hubnet-message)
+;          custom-logging:log-message (word "user " hubnet-message-source " strategy " hubnet-message)
           set strategy hubnet-message ]
     ]
       [ if command = "extra-output" [ask sellers with [user-id = hubnet-message-source]
           [
-            custom-logging:log-message (word "user " hubnet-message-source " extra-output " hubnet-message)
+;            custom-logging:log-message (word "user " hubnet-message-source " extra-output " hubnet-message)
             set extra-output hubnet-message ]
           ]
       ]
