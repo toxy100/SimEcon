@@ -1,4 +1,4 @@
-extensions [custom-logging props web crypto snooper]
+;extensions [custom-logging props web crypto snooper]
 
 globals [
   num-sellers
@@ -80,27 +80,27 @@ end
 
 to register-address
 
-  if is-first-registration? [
-
-    set is-first-registration? false
-
-    let teacher-name          props:get "jnlp.netlogo.registry.teacher_name"
-    let url                   props:get "jnlp.netlogo.registry.register_url"
-    let teacher-name-http-key props:get "jnlp.netlogo.registry.http.teacher_name_key"
-    let data-http-key         props:get "jnlp.netlogo.registry.http.data_key"
-    let modulus               props:get "jnlp.netlogo.registry.public_key.modulus"
-    let exponent              props:get "jnlp.netlogo.registry.public_key.exponent"
-
-    let address (word snooper:local-ip ":" snooper:hubnet-port)
-    let encrypted (crypto:rsa-encrypt address modulus exponent)
-    let params (list (list data-http-key encrypted) (list teacher-name-http-key teacher-name))
-
-    let response web:make-request url "POST" params
-    let response-code first but-first response
-
-    if-else (response-code = "HTTP/1.1 200 OK") [ user-message "HubNet registry succeeded!  You may now tell the clients to connect." ] [ user-message "HubNet registry was a giant failure!  If the problem persists, please reacquire NetLogo from WISE." ]
-
-  ]
+;  if is-first-registration? [
+;
+;    set is-first-registration? false
+;
+;    let teacher-name          props:get "jnlp.netlogo.registry.teacher_name"
+;    let url                   props:get "jnlp.netlogo.registry.register_url"
+;    let teacher-name-http-key props:get "jnlp.netlogo.registry.http.teacher_name_key"
+;    let data-http-key         props:get "jnlp.netlogo.registry.http.data_key"
+;    let modulus               props:get "jnlp.netlogo.registry.public_key.modulus"
+;    let exponent              props:get "jnlp.netlogo.registry.public_key.exponent"
+;
+;    let address (word snooper:local-ip ":" snooper:hubnet-port)
+;    let encrypted (crypto:rsa-encrypt address modulus exponent)
+;    let params (list (list data-http-key encrypted) (list teacher-name-http-key teacher-name))
+;
+;    let response web:make-request url "POST" params
+;    let response-code first but-first response
+;
+;    if-else (response-code = "HTTP/1.1 200 OK") [ user-message "HubNet registry succeeded!  You may now tell the clients to connect." ] [ user-message "HubNet registry was a giant failure!  If the problem persists, please reacquire NetLogo from WISE." ]
+;
+;  ]
 
 end
 
@@ -872,8 +872,7 @@ to plot-current-p2-quantity
 ;    ]
 end
 
-to register-server
-end
+
 
 ; Copyright 2004 Uri Wilensky.
 ; See Info tab for full copyright and license.
@@ -1725,7 +1724,7 @@ Polygon -6459832 true true 46 128 33 120 21 118 11 123 3 138 5 160 13 178 9 192 
 Polygon -6459832 true true 67 122 96 126 63 144
 
 @#$#@#$#@
-NetLogo 5.0.5-RC1
+NetLogo 5.3.1
 @#$#@#$#@
 need-to-manually-make-preview-for-this-model
 @#$#@#$#@
